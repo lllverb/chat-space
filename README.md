@@ -26,10 +26,9 @@ Things you may want to cover:
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer||
-|nickname|string||
-|email|string||
-|password|text||
+|nickname|string|null: false|
+|email|string|null: false|
+|password|text|null: false|
 ### Association
 - has_many :talks
 - has_many :groups, through :groups_users
@@ -38,11 +37,10 @@ Things you may want to cover:
 ## talksテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer||
-|body|text||
-|img|||
-|user_id|integer||
-|group_id|integer||
+|body|text|null: false|
+|img|text||
+|user_id|integer|foreign_key: true|
+|group_id|integer|foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :group
@@ -51,8 +49,7 @@ Things you may want to cover:
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer||
-|name|text||
+|name|text|null: false|
 ### Association
 - has_many :users, through :groups_users
 - has_many :talks
@@ -61,9 +58,8 @@ Things you may want to cover:
 ## groups_usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer||
-|user_id|integer||
-|group_id|integer||
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
 ### Association
 - has_many :users
 - has_many :groups
