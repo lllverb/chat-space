@@ -1,11 +1,10 @@
-@import "./variable";
 
 *{
   box-sizing: border-box;
 }
 
 .header{
-  background-color: $mainBlueColor;
+  background-color: $light_blue;
   color: white;
   text-align: center;
 }
@@ -70,7 +69,7 @@
           font-size: 20px;
         }
         &--menber{
-          color: #999;
+          color: $light_gray;
           font-size: 12px
         }
       }
@@ -82,13 +81,13 @@
           margin-top: 28px;
           padding: 0 20px;
           line-height: 40px;
-          border: 1px solid $mainBlueColor;
+          border: 1px solid $light_blue;
           display: block;
           text-decoration: none;
         }
         p{
           display: block;
-          color: $mainBlueColor;
+          color: $light_blue;
         }
       }
     }
@@ -101,18 +100,18 @@
         display: flex;
         p{
           padding-right: 10px;
-          color: $mainTextColor;
+          color: $black;
           font-size: 16px;
           font-weight: bold;
         }
         span{
           font-size: 12px;
-          color: #999999;
+          color: $light_gray;
         }
       }
       &--talk{
         padding: 10px 0 40px 0;
-        color: $mainTextColor;
+        color: $black;
         font-size: 14px;
       }
     }
@@ -134,7 +133,7 @@
           margin-right: 10px;
           padding-left: 10px;
           background-color: white;
-          color: $mainTextColor;
+          color: $black;
           &--label{
             position: absolute;
             top: 0;
@@ -155,7 +154,7 @@
         height: 50px;
         margin-left: 15px;
         padding: 0 30px;
-        background-color: $mainBlueColor;
+        background-color: $light_blue;
         color: white;
       }
     }
