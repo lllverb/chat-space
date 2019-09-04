@@ -57,10 +57,10 @@
   .right-content{
     position: relative;
     width: calc(100vw - 300px);
-    background-color: #fafafa;
     .head{
       display: flex;
       height: 100px;
+      background-color: white;
       border-bottom: 1px solid #eee;
       &--left{
         margin-left: 40px;
@@ -74,19 +74,27 @@
           font-size: 12px
         }
       }
-
+      
       &--edit{
         position: absolute;
         right: 40px;
-        margin-top: 28px;
-        padding: 0 20px;
-        line-height: 40px;
-        color: $mainBlueColor;
-        border: 1px solid $mainBlueColor;
+        .link-to-edit{
+          margin-top: 28px;
+          padding: 0 20px;
+          line-height: 40px;
+          border: 1px solid $mainBlueColor;
+          display: block;
+          text-decoration: none;
+        }
+        p{
+          display: block;
+          color: $mainBlueColor;
+        }
       }
     }
-
+    
     .main{
+      background-color: #fafafa;
       height: calc(100vh - 190px);
       padding: 46px 40px 0;
       &--username{
@@ -112,7 +120,7 @@
     .foot{
       position: relative;
       height: 90px;
-      background-color: lightgray;
+      background-color: #ddd;
       font-size: 16px;
       &__textbox{
         display: flex;
