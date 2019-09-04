@@ -33,7 +33,8 @@
         display: flex;
         position: absolute;
         right: 20px;
-       .icon{
+        .icon{
+          font-size: 16px;
           padding: 3px;
           color: white;
           &:hover{
