@@ -1,0 +1,42 @@
+.header
+  %p グループを作成しました
+
+.contents
+  = render 'left_content'
+
+  .right-content
+    .head
+      .head--left
+        .head--left--name
+          %p test-group
+        .head--left--menber
+          %p Member：test-user
+      .head--edit
+        %p Edit
+    .main
+      .main--username
+        %p test-user 
+        %span 2019/09/4(wed) 11:34:89
+      .main--talk
+        %p こんにちは！
+      .main--username
+        %p test-user
+      .main--talk
+        %p さようなら
+
+    -# .foot
+    -#   .foot__textbox
+    -#     .foot__textbox--input
+    -#       %p type a message
+    -#       .foot__textbox--input--label
+    -#         %i.fa.fa-image
+    -#     .foot--send
+    -#       %p Send
+
+    .foot
+      %form.foot__textbox
+        %input.foot__textbox--input{value: 'type a message'}
+          %label.foot__textbox--input--label
+            = fa_icon 'image', class: 'icon'
+            %input.hidden{type: 'file'}
+        %input.foot--send{type: 'submit', value: 'Send'}
