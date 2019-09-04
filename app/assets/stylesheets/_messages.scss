@@ -1,0 +1,163 @@
+@import "./variable";
+
+*{
+  box-sizing: border-box;
+}
+
+.header{
+  background-color: $mainBlueColor;
+  color: white;
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}
+
+.contents{
+  display: flex;
+  height: calc(100vh);
+  .left-content{
+    width: 300px;
+    background-color: #2f3e51;
+    color: white;
+    font-weight: bold;
+    .user{
+      display: flex;
+      position: relative;
+      height: 100px;
+      background-color: #253141;
+      font-size: 16px;
+      line-height: 100px;
+      padding: 0 20px;
+      &--right{
+        display: flex;
+        position: absolute;
+        right: 20px;
+       .icon{
+          padding: 3px;
+          color: white;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .group{
+      padding: 20px 20px;
+      &--name{
+        padding-bottom: 5px;
+        font-size: 15px;
+      }
+      &--talk{
+        font-size: 11px;
+      }
+    }
+  }
+  .right-content{
+    position: relative;
+    width: calc(100vw - 300px);
+    .head{
+      display: flex;
+      height: 100px;
+      background-color: white;
+      border-bottom: 1px solid #eee;
+      &--left{
+        margin-left: 40px;
+        &--name{
+          padding: 35px 0 15px 0;
+          color: #333;
+          font-size: 20px;
+        }
+        &--menber{
+          color: #999;
+          font-size: 12px
+        }
+      }
+      
+      &--edit{
+        position: absolute;
+        right: 40px;
+        .link-to-edit{
+          margin-top: 28px;
+          padding: 0 20px;
+          line-height: 40px;
+          border: 1px solid $mainBlueColor;
+          display: block;
+          text-decoration: none;
+        }
+        p{
+          display: block;
+          color: $mainBlueColor;
+        }
+      }
+    }
+    
+    .main{
+      background-color: #fafafa;
+      height: calc(100vh - 190px);
+      padding: 46px 40px 0;
+      &--username{
+        display: flex;
+        p{
+          padding-right: 10px;
+          color: $mainTextColor;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        span{
+          font-size: 12px;
+          color: #999999;
+        }
+      }
+      &--talk{
+        padding: 10px 0 40px 0;
+        color: $mainTextColor;
+        font-size: 14px;
+      }
+    }
+
+    .foot{
+      position: relative;
+      height: 90px;
+      background-color: #ddd;
+      font-size: 16px;
+      &__textbox{
+        display: flex;
+        position: absolute;
+        width: calc(100% - 80px);
+        height: 50px;
+        margin: 20px 40px;
+        &--input{
+          position: relative;
+          width: calc(100% - 125px);
+          margin-right: 10px;
+          padding-left: 10px;
+          background-color: white;
+          color: $mainTextColor;
+          &--label{
+            position: absolute;
+            top: 0;
+            right: 140px;
+            font-size: 20px;
+            line-height: 50px;
+            &:hover{
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      &--send{
+        position: absolute;
+        right: 0px;
+        width: 100px;
+        height: 50px;
+        margin-left: 15px;
+        padding: 0 30px;
+        background-color: $mainBlueColor;
+        color: white;
+      }
+    }
+  }
+}
