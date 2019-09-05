@@ -13,6 +13,10 @@
   display: none;
 }
 
+.link{
+  text-decoration: none;
+}
+
 .contents{
   display: flex;
   height: calc(100vh);
@@ -48,9 +52,13 @@
       &--name{
         padding-bottom: 5px;
         font-size: 15px;
+        color: $white;
+        text-decoration: none;
       }
       &--talk{
         font-size: 11px;
+        color: $white;
+        text-decoration: none;
       }
     }
   }

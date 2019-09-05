@@ -10,21 +10,10 @@
         =link_to edit_user_path(current_user) do
           = fa_icon 'cog', class:'icon'
 
-  .group
-    .group--name
-      %p test-group
-    .group--talk
-      %p さようなら
-
-  .group
-    .group--name
-      %p sample-group
-    .group--talk
-      %p hello!
-
-  .group
-    .group--name
-      %p example
-    .group--talk
-      %p まだメッセージがありません
-
+  - current_user.groups.each do |group|
+    = link_to '#', class: 'link ' do
+      .group
+        .group--name
+          = group.name
+        .group--talk
+          メッセージはまだありません
