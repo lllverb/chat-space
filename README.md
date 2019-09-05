@@ -35,13 +35,13 @@ Things you may want to cover:
 - has_many :groups_users
 
 
-## talksテーブル
+## messageテーブル
 |Column|Type|Options|
 |------|----|-------|
-|body|text||
-|img|text||
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|content|string||
+|image|string||
+|user_id|integer|foreign_key: true|
+|group_id|integer|foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :group
