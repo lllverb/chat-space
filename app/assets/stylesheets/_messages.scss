@@ -125,46 +125,39 @@
       }
     }
 
-    .foot{
-      position: relative;
+    .form {
+      background-color: #DDDDDD;
+      box-sizing: border-box;
       height: 90px;
-      background-color: #ddd;
-      font-size: 16px;
-      &__textbox{
-        display: flex;
-        position: absolute;
-        width: calc(100% - 80px);
+      padding: 20px 50px 20px 40px;
+      &__message {
+        border: none;
+        float: left;
         height: 50px;
-        margin: 20px 40px;
-        &--input{
-          position: relative;
-          width: calc(100% - 125px);
-          margin-right: 10px;
-          padding-left: 10px;
-          background-color: white;
-          color: $black;
-          &--label{
-            position: absolute;
-            top: 0;
-            right: 140px;
-            font-size: 20px;
-            line-height: 50px;
-            &:hover{
-              cursor: pointer;
-            }
-          }
+        width: calc(100% - 150px);
+      }
+      &__mask {
+        background-color: $white;
+        float: left;
+        height: 50px;
+        padding-right: 10px;
+        &__image {
+          font-size: 20px;
+          line-height: 50px;
+        }
+        .hidden {
+          display: none;
         }
       }
-
-      &--send{
-        position: absolute;
-        right: 0px;
-        width: 100px;
+      &__submit {
+        background-color: $light_blue;
+        border: none;
+        color: $white;
+        float: right;
+        font-size: 16px;
         height: 50px;
         margin-left: 15px;
         padding: 0 30px;
-        background-color: $light_blue;
-        color: white;
       }
     }
   }
