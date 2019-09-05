@@ -12,15 +12,7 @@
         =link_to '#', class:"link link-to-edit" do
           %p Edit
     .main
-      .main--username
-        %p test-user 
-        %span 2019/09/4(wed) 11:34:89
-      .main--talk
-        %p こんにちは！
-      .main--username
-        %p test-user
-      .main--talk
-        %p さようなら
+      = render partial: 'message', collection: @messages
 
     .form
       = form_for [@group, @message] do |f|
