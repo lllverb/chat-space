@@ -12,20 +12,13 @@
         =link_to '#', class:"link link-to-edit" do
           %p Edit
     .main
-      .main--username
-        %p test-user 
-        %span 2019/09/4(wed) 11:34:89
-      .main--talk
-        %p こんにちは！
-      .main--username
-        %p test-user
-      .main--talk
-        %p さようなら
+      = render partial: 'message', collection: @messages
 
-    .foot
-      %form.foot__textbox
-        %input.foot__textbox--input{value: 'type a message'}
-          %label.foot__textbox--input--label
-            = fa_icon 'image', class: 'icon'
-            %input.hidden{type: 'file'}
-        %input.foot--send{type: 'submit', value: 'Send'}
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: ' type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
