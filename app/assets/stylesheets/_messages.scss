@@ -13,6 +13,10 @@
   display: none;
 }
 
+.link{
+  text-decoration: none;
+}
+
 .contents{
   display: flex;
   height: calc(100vh);
@@ -33,7 +37,8 @@
         display: flex;
         position: absolute;
         right: 20px;
-       .icon{
+        .icon{
+          font-size: 16px;
           padding: 3px;
           color: white;
           &:hover{
@@ -47,9 +52,13 @@
       &--name{
         padding-bottom: 5px;
         font-size: 15px;
+        color: $white;
+        text-decoration: none;
       }
       &--talk{
         font-size: 11px;
+        color: $white;
+        text-decoration: none;
       }
     }
   }

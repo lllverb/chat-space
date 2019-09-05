@@ -4,27 +4,16 @@
       = current_user.name
     %ul.user--right
       %li.list
-        =link_to '#' do
+        =link_to new_group_path do
           = fa_icon 'edit', class:'icon'
       %li.list
         =link_to edit_user_path(current_user) do
           = fa_icon 'cog', class:'icon'
 
-  .group
-    .group--name
-      %p test-group
-    .group--talk
-      %p さようなら
-
-  .group
-    .group--name
-      %p sample-group
-    .group--talk
-      %p hello!
-
-  .group
-    .group--name
-      %p example
-    .group--talk
-      %p まだメッセージがありません
-
+  - current_user.groups.each do |group|
+    = link_to group_messages_path(group), class: 'link ' do
+      .group
+        .group--name
+          = group.name
+        .group--talk
+          メッセージはまだありません
