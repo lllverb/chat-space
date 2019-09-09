@@ -30,8 +30,7 @@ $(function(){
                       ${message.content} 
                     </p>
                   </div>`
-      return html;
-    }
+    return html;
   }
 
   $(function(){
@@ -39,6 +38,10 @@ $(function(){
   })
 
   $('.form__submit').removeAttr('data-disable-with')
+
+  function scrollBottom(){
+    $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
+  };
 
   $('#new_message').on('submit', function(e){
     e.preventDefault();
@@ -56,10 +59,8 @@ $(function(){
       var html = buildHTML(data);
       $('.main').append(html)
       $('.form__message').val('')
-      $('.hidden').val('')
-      $(function(){
-        $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
-      })
+      scrollBottom();
+
     })
     .fail(function(){
       alert('error')
