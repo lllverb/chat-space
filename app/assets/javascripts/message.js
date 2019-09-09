@@ -10,11 +10,15 @@ $(function(){
                 </div>
                 <div class="lower-main">
                   <p class="lower-message__content">
-                    ${message.content}
+                    
+                    ${message.content} 
+
                   </p>
                 </div>`
     return html;
   }
+
+  $('.form__submit').removeAttr('data-disable-with')
 
   $('#new_message').on('submit', function(e){
     e.preventDefault();
