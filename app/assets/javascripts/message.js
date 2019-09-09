@@ -36,6 +36,9 @@ $(function(){
       var html = buildHTML(data);
       $('.main').append(html)
       $('.form__message').val('')
+      $(function(){
+        $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
+      })
     })
     .fail(function(){
       alert('error')
