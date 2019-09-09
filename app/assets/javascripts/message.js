@@ -11,6 +11,16 @@ $(function(){
                   </div>
                   <div class="lower-main">
                     <img class="lower-message__image" src="${message.image}" alt="${message.image}"> 
+                  </div>
+                  <div class="upper-main">
+                    <div class="upper-main__username">
+                      ${message.user_name}
+                    </div>
+                    <div class="upper-main__date">
+                      ${message.created_at}
+                    </div>
+                  </div>
+                  <div class="lower-main">
                     <p class="lower-message__content">
                       ${message.content} 
                     </p>
@@ -31,18 +41,14 @@ $(function(){
                     </p>
                   </div>`
     return html;
-  }
-
-  $(function(){
-    $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
-  })
-
-  $('.form__submit').removeAttr('data-disable-with')
-
+  }};
+  
   function scrollBottom(){
     $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
   };
-
+  
+  $('.form__submit').removeAttr('data-disable-with')
+  
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -59,8 +65,8 @@ $(function(){
       var html = buildHTML(data);
       $('.main').append(html)
       $('.form__message').val('')
+      $('.hidden').val('')
       scrollBottom();
-
     })
     .fail(function(){
       alert('error')
