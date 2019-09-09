@@ -1,22 +1,42 @@
 $(function(){
   function buildHTML(message){
-    var html = `<div class="upper-main">
-                  <div class="upper-main__username">
-                    ${message.user_name}
+    if (message.image !== null){
+      var html = `<div class="upper-main">
+                    <div class="upper-main__username">
+                      ${message.user_name}
+                    </div>
+                    <div class="upper-main__date">
+                      ${message.created_at}
+                    </div>
                   </div>
-                  <div class="upper-main__date">
-                    ${message.created_at}
+                  <div class="lower-main">
+                    <img class="lower-message__image" src="${message.image}" alt="${message.image}"> 
+                    <p class="lower-message__content">
+                      ${message.content} 
+                    </p>
+                  </div>`
+      return html;
+    } else{
+      var html = `<div class="upper-main">
+                    <div class="upper-main__username">
+                      ${message.user_name}
+                    </div>
+                    <div class="upper-main__date">
+                      ${message.created_at}
+                    </div>
                   </div>
-                </div>
-                <div class="lower-main">
-                  <p class="lower-message__content">
-                    
-                    ${message.content} 
-
-                  </p>
-                </div>`
-    return html;
+                  <div class="lower-main">
+                    <p class="lower-message__content">
+                      ${message.content} 
+                    </p>
+                  </div>`
+      return html;
+    }
   }
+
+  $(function(){
+    $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
+  })
 
   $('.form__submit').removeAttr('data-disable-with')
 
@@ -36,6 +56,7 @@ $(function(){
       var html = buildHTML(data);
       $('.main').append(html)
       $('.form__message').val('')
+      $('.hidden').val('')
       $(function(){
         $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
       })
