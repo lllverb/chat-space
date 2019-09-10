@@ -1,45 +1,40 @@
 $(function(){
   function buildHTML(message){
-    if (message.image !== null){
-      var html = `<div class="upper-main">
-                    <div class="upper-main__username">
-                      ${message.user_name}
+    var imageArea = `<div class="upper-main">
+                      <div class="upper-main__username">
+                        ${message.user_name}
+                      </div>
+                      <div class="upper-main__date">
+                        ${message.created_at}
+                      </div>
                     </div>
-                    <div class="upper-main__date">
-                      ${message.created_at}
-                    </div>
-                  </div>
-                  <div class="lower-main">
-                    <img class="lower-message__image" src="${message.image}" alt="${message.image}"> 
-                  </div>
-                  <div class="upper-main">
-                    <div class="upper-main__username">
-                      ${message.user_name}
-                    </div>
-                    <div class="upper-main__date">
-                      ${message.created_at}
-                    </div>
-                  </div>
-                  <div class="lower-main">
-                    <p class="lower-message__content">
-                      ${message.content} 
-                    </p>
-                  </div>`
-      return html;
-    } else{
-      var html = `<div class="upper-main">
-                    <div class="upper-main__username">
-                      ${message.user_name}
-                    </div>
-                    <div class="upper-main__date">
-                      ${message.created_at}
-                    </div>
-                  </div>
-                  <div class="lower-main">
-                    <p class="lower-message__content">
-                      ${message.content} 
-                    </p>
-                  </div>`
+                    <div class="lower-main">
+                      <img class="lower-message__image" src="${message.image}" alt="${message.image}"> 
+                    </div>`
+
+    var contentArea = `<div class="upper-main">
+                        <div class="upper-main__username">
+                          ${message.user_name}
+                        </div>
+                        <div class="upper-main__date">
+                          ${message.created_at}
+                        </div>
+                      </div>
+                      <div class="lower-main">
+                        <p class="lower-message__content">
+                          ${message.content} 
+                        </p>
+                      </div>`
+
+
+  if (message.image != null && message.content != null){
+    var html = imageArea + contentArea;
+    return html;
+  } else if (message.image != null && message.content == null){
+    var html = imageArea;
+    return html;
+  }else {
+    var html = contentArea;
     return html;
   }};
   
@@ -63,13 +58,13 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.main').append(html)
-      $('.form__message').val('')
-      $('.hidden').val('')
+      $('.main').append(html);
+      $('.form__message').val('');
+      $('.hidden').val('');
       scrollBottom();
     })
     .fail(function(){
-      alert('error')
+      alert('error');
     })
   })
 });
