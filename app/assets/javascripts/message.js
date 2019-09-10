@@ -1,18 +1,8 @@
 $(function(){
   function buildHTML(message){
-    var imageArea = `<div class="upper-main">
-                      <div class="upper-main__username">
-                        ${message.user_name}
-                      </div>
-                      <div class="upper-main__date">
-                        ${message.created_at}
-                      </div>
-                    </div>
-                    <div class="lower-main">
-                      <img class="lower-message__image" src="${message.image}" alt="${message.image}"> 
-                    </div>`
+    var withImage = message.image? `<img class="lower-message__image" src="${message.image}" alt="${message.image}">` : ``;
 
-    var contentArea = `<div class="upper-main">
+    var aMessage = `<div class="upper-main">
                         <div class="upper-main__username">
                           ${message.user_name}
                         </div>
@@ -24,19 +14,12 @@ $(function(){
                         <p class="lower-message__content">
                           ${message.content} 
                         </p>
+                        ${withImage}
                       </div>`
+    html = aMessage
+    return html
+  };
 
-
-  if (message.image != null && message.content != null){
-    var html = imageArea + contentArea;
-    return html;
-  } else if (message.image != null && message.content == null){
-    var html = imageArea;
-    return html;
-  }else {
-    var html = contentArea;
-    return html;
-  }};
   
   function scrollBottom(){
     $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
@@ -59,8 +42,10 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.main').append(html);
-      $('.form__message').val('');
+
+      $('#message_content').val('');
       $('.hidden').val('');
+
       scrollBottom();
     })
     .fail(function(){
