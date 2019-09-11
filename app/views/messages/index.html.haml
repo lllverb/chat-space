@@ -5,11 +5,13 @@
     .head
       .head--left
         .head--left--name
-          %p test-group
-        .head--left--menber
-          %p Member：test-user
+          = @group.name
+        .head--left--menber 
+          Menber:
+          - @group.group_users.each do |group_user|
+            = group_user.user.name
       .head--edit
-        =link_to '#', class:"link link-to-edit" do
+        =link_to edit_group_path(@group), class:"link link-to-edit" do
           %p Edit
     .main
       = render partial: 'message', collection: @messages
