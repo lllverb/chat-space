@@ -43,8 +43,7 @@ $(function(){
       var html = buildHTML(data);
       $('.main').append(html);
 
-      $('#message_content').val('');
-      $('.hidden').val('');
+      $('#new_message')[0].reset()
 
       scrollBottom();
     })
