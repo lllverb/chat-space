@@ -105,6 +105,7 @@
       background-color: #fafafa;
       height: calc(100vh - 190px);
       padding: 46px 40px 0;
+      overflow: scroll;
       .upper-main{
         display: flex;
         &__username{
