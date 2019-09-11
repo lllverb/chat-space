@@ -20,7 +20,6 @@ $(document).on("turbolinks:load", function() {
 
   inputForm.on('keyup', function(){
     var target = inputForm.val();
-    console.log(target)
     $.ajax({
       type: 'GET',
       url: '/users',
