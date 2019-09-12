@@ -19,26 +19,36 @@ $(document).on("turbolinks:load", function() {
 
   inputForm.on('keyup', function(){
     var target = inputForm.val();
-    $.ajax({
-      type: 'GET',
-      url: '/users',
-      data: {keyword: target},
-      dataType: 'json'
-    })
-    .done(function(data){
-
-      searchResult.empty();
-      if (data.length !== 0){
-        data.forEach(function(data){
-          buildHTML(data);
-        });
-      }
-      else {
+    if (target.length !== 0){
+      $.ajax({
+        type: 'GET',
+        url: '/users',
+        data: {keyword: target},
+        dataType: 'json'
+      })
+      
+      .done(function(data){
+        searchResult.empty();
+        if (data.length !== 0){
+          data.forEach(function(data){
+            buildHTML(data);
+            $(document).on('click', '.user-search-add', function(){
+              console.log('data')
+              var theUser = $(this).parent();
+              $(theUser).remove();
+              
+            })
+          });
+        }
+        else {
         appendErrMsgToHTML("一致するユーザーはいません");
       }
     })
     .fail(function(){
       alert('検索に失敗しました')
     })
+  } else{
+    searchResult.empty();
+  }
   });
 });
