@@ -58,10 +58,11 @@ document.addEventListener("turbolinks:load", function() {
     })
   })
 
+  last_message_id = $('.lower-message__content:last').data();
+  console.log(last_message_id);
 
   var reloadMessages = function() {
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-    last_message_id = ※※※
     $.ajax({
       //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
       url: '/api/message',
