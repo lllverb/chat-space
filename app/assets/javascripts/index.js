@@ -13,7 +13,7 @@ $(document).on("turbolinks:load", function() {
                 </div>`;
     searchResult.append(html)
   }
-
+  
 
   //一致するユーザーがいない場合のhtml
   function buildErrMsgToHTML(msg) {
