@@ -58,11 +58,11 @@ document.addEventListener("turbolinks:load", function() {
     })
   })
 
-  last_message_id = $('.lower-message__content:last').data();
-  console.log(last_message_id);
-
+  
   var reloadMessages = function() {
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+    last_message_id = $('.lower-message__content:last').data();
+    console.log(last_message_id);
     $.ajax({
       //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
       url: '/api/message',
@@ -73,11 +73,44 @@ document.addEventListener("turbolinks:load", function() {
       data: {id: last_message_id}
     })
     .done(function(messages) {
-      console.log('success');
+      //追加するHTMLの入れ物を作る
+      var insertHTML = '';
+      //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+      messages.each(function(){
+        buildMessageHTML(message)
+        //メッセージが入ったHTMLを取得
+        insertHTML = insertHTML + html
+        //メッセージを追加
+      })
+      $('.main').append(html);
     })
     .fail(function() {
       console.log('error');
     });
   };
+  var buildMessageHTML = function(message) {
+    
+    var messageContent = message.content? `'<p class="lower-message__content">' +
+                                              ${message.content} + 
+                                            '</p>' +` : ``;
+    
+    var imageUrl      = image.url?         `'<img src="' + ${message.image.url} + '" class="lower-message__image" >' +` : ``;
 
+    
+    var html = '<div class="message" data-id=' + message.id + '>' +
+                  '<div class="upper-message">' +
+                    '<div class="upper-message__user-name">' +
+                      message.user_name +
+                    '</div>' +
+                    '<div class="upper-message__date">' +
+                      message.created_at +
+                    '</div>' +
+                  '</div>' +
+                  '<div class="lower-message">' +
+                    $(messageContent)
+                    $(imageUrl)
+                  '</div>' +
+                '</div>'
+    return html;
+  };
 });
