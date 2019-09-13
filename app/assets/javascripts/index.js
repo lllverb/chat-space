@@ -13,7 +13,7 @@ $(document).on("turbolinks:load", function() {
                 </div>`;
     searchResult.append(html)
   }
-  
+
 
   //一致するユーザーがいない場合のhtml
   function buildErrMsgToHTML(msg) {
@@ -81,6 +81,7 @@ $(document).on("turbolinks:load", function() {
   searchResult.on("click", ".chat-group-user__btn--add", function(){
     var dataUserName = $(this).attr("data-user-name");
     var dataUserId   = $(this).attr("data-user-id");
+    
     // 配列にidを追加
     ids.push(dataUserId);
     $(this).parent().remove();
