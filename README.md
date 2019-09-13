@@ -1,6 +1,6 @@
-<!-- # README
+# README
 
-This README would normally document whatever steps are necessary to get the
+<!-- This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
@@ -30,12 +30,12 @@ Things you may want to cover:
 |email|string|null: false|
 |password|text|null: false|
 ### Association
-- has_many :talks
-- has_many :groups, through :groups_users
+- has_many :messages
+- has_many :groups, through: :groups_users
 - has_many :groups_users
 
 
-## messageテーブル
+## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |content|string||
@@ -52,8 +52,8 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false|
 ### Association
-- has_many :users, through :groups_users
-- has_many :talks
+- has_many :users, through: :groups_users
+- has_many :messages
 - has_many :groups_users
 
 

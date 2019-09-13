@@ -2,14 +2,13 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update]
 
   def index
-
   end
 
   def new
     @group = Group.new
     @group.users << current_user
   end
-
+  
   def create
     @group = Group.new(group_params)
     if @group.save
@@ -18,12 +17,13 @@ class GroupsController < ApplicationController
       render :new
     end
   end
-
+  
   def edit
   end
-
+  
   def update
     if @group.update(group_params)
+      @group.users << current_user unless @group.users.ids.include?(current_user.id)
       redirect_to group_messages_path(@group), notice: 'グループを編集しました'
     else
       render :edit
@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:name, {:user_ids => []})
+    params.require(:group).permit(:name, {user_ids: []})
   end
 
   def set_group
