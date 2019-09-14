@@ -2,8 +2,8 @@ document.addEventListener("turbolinks:load", function() {
 
   // 新規メッセージのhtml
   function buildHTML(message){
-    var withImage = message.image.empty? `<img class="lower-main__image" src="${message.image}" alt="${message.image}">` : ``;
-
+    var withImage = message.image.url != null? `<img class="lower-main__image" src="${message.image.url}" alt="${message.image.url}">` : ``;
+    console.log(message.image.url)
     var aMessage = `<div class="upper-main">
                       <div class="upper-main__username">
                       ${message.username}
@@ -81,7 +81,7 @@ document.addEventListener("turbolinks:load", function() {
       //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
       messages.forEach(function(message){
         //メッセージが入ったHTMLを取得
-        insertHTML = insertHTML + buildHTML(message);
+        insertHTML = buildHTML(message);
         //メッセージを追加
         $('.main').append(insertHTML);
         scrollBottom();
