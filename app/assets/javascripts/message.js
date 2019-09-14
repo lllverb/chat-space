@@ -62,27 +62,30 @@ document.addEventListener("turbolinks:load", function() {
   var reloadMessages = function() {
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
     last_message_id = $('.lower-message__content:last').data();
-    console.log(last_message_id);
+    console.log(last_message_id)
     $.ajax({
       //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
-      url: '/api/message',
+      url: 'api/messages',
+      
       //ルーティングで設定した通りhttpメソッドをgetに指定
       type: 'get',
       dataType: 'json',
       //dataオプションでリクエストに値を含める
       data: {id: last_message_id}
     })
-    .done(function(messages) {
+    .done(function(data) {
+      console.log('a')
       //追加するHTMLの入れ物を作る
       var insertHTML = '';
       //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
-      messages.each(function(){
-        buildMessageHTML(message)
+      data.each(function(){
+        buildMessageHTML(d)
         //メッセージが入ったHTMLを取得
         insertHTML = insertHTML + html
         //メッセージを追加
       })
-      $('.main').append(html);
+      $('.main').append(insertHTML);
+      scrollBottom();
     })
     .fail(function() {
       console.log('error');
@@ -113,4 +116,9 @@ document.addEventListener("turbolinks:load", function() {
                 '</div>'
     return html;
   };
+  
+  var url = location.href;
+  if (url.includes('messages')){
+    setInterval(reloadMessages, 2000);
+  }
 });
