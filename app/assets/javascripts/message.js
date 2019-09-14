@@ -3,7 +3,6 @@ document.addEventListener("turbolinks:load", function() {
   // 新規メッセージのhtml
   function buildHTML(message){
     var withImage = message.image.url != null? `<img class="lower-main__image" src="${message.image.url}" alt="${message.image.url}">` : ``;
-    console.log(message.image.url)
     var aMessage = `<div class="upper-main">
                       <div class="upper-main__username">
                       ${message.username}
