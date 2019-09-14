@@ -54,13 +54,13 @@ document.addEventListener("turbolinks:load", function() {
       scrollBottom();
     })
     .fail(function(){
-      alert('error');
+      alert('投稿に失敗しました');
     })
   })
 
   
 
-
+  // 自動更新機能
   var reloadMessages = function() {
     
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
@@ -89,33 +89,11 @@ document.addEventListener("turbolinks:load", function() {
       })
     })
     .fail(function() {
-      console.log('error');
+      alert('自動更新に失敗しました');
     });
   };
-  // var buildMessageHTML = function(message) {
-    
-  //   var messageContent = message.content? '<p class="lower-main__content" data-id=' + message.id + '>' +
-  //                                             message.content + 
-  //                                           '</p>' : '';
-    
-  //   var imageUrl      = message.image?         '<img src="' + message.image.url + '" class="lower-main__image" >' : '';
 
-    
-  //   var html =    '<div class="upper-main">' +
-  //                   '<div class="upper-main__username">' +
-  //                     message.user_name +
-  //                   '</div>' +
-  //                   '<div class="upper-main__date">' +
-  //                     message.created_at +
-  //                   '</div>' +
-  //                 '</div>' +
-  //                 '<div class="lower-main">' +
-  //                   $(messageContent)
-  //                   $(imageUrl)
-  //                 '</div>' +
-  //               '</div>';
-  //   return html;
-  // };
+  // urlにmessagesが含まれるときだけ自動更新メソッドを実行
   var url = location.href;
   if (url.includes('messages')){
     setInterval(reloadMessages, 5000);
