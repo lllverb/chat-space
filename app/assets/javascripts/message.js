@@ -65,7 +65,6 @@ document.addEventListener("turbolinks:load", function() {
     
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
     var last_message_id = $('.lower-main__content:last').data('id');
-    console.log(last_message_id)
 
     $.ajax({
       //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
@@ -82,7 +81,7 @@ document.addEventListener("turbolinks:load", function() {
       //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
       messages.forEach(function(message){
         //メッセージが入ったHTMLを取得
-        insertHTML = buildHTML(message);
+        insertHTML = insertHTML + buildHTML(message);
         //メッセージを追加
         $('.main').append(insertHTML);
         scrollBottom();
