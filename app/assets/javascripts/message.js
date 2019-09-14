@@ -2,18 +2,18 @@ document.addEventListener("turbolinks:load", function() {
 
   // 新規メッセージのhtml
   function buildHTML(message){
-    var withImage = message.image? `<img class="lower-message__image" src="${message.image}" alt="${message.image}">` : ``;
+    var withImage = message.image.empty? `<img class="lower-main__image" src="${message.image}" alt="${message.image}">` : ``;
 
     var aMessage = `<div class="upper-main">
                       <div class="upper-main__username">
-                      ${message.user_name}
+                      ${message.username}
                       </div>
                       <div class="upper-main__date">
                         ${message.created_at}
                       </div>
                     </div>
                     <div class="lower-main">
-                      <p class="lower-message__content">
+                      <p class="lower-main__content" data-id= ${message.id} >
                         ${message.content} 
                       </p>
                       ${withImage}
@@ -59,13 +59,17 @@ document.addEventListener("turbolinks:load", function() {
   })
 
   
+
+
   var reloadMessages = function() {
+    
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-    last_message_id = $('.lower-message__content:last').data();
-    console.log(last_message_id);
+    var last_message_id = $('.lower-main__content:last').data('id');
+    console.log(last_message_id)
+
     $.ajax({
       //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
-      url: '/api/message',
+      url: 'api/messages',
       //ルーティングで設定した通りhttpメソッドをgetに指定
       type: 'get',
       dataType: 'json',
@@ -76,41 +80,44 @@ document.addEventListener("turbolinks:load", function() {
       //追加するHTMLの入れ物を作る
       var insertHTML = '';
       //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
-      messages.each(function(){
-        buildMessageHTML(message)
+      messages.forEach(function(message){
         //メッセージが入ったHTMLを取得
-        insertHTML = insertHTML + html
+        insertHTML = buildHTML(message);
         //メッセージを追加
+        $('.main').append(insertHTML);
+        scrollBottom();
       })
-      $('.main').append(html);
     })
     .fail(function() {
       console.log('error');
     });
   };
-  var buildMessageHTML = function(message) {
+  // var buildMessageHTML = function(message) {
     
-    var messageContent = message.content? `'<p class="lower-message__content">' +
-                                              ${message.content} + 
-                                            '</p>' +` : ``;
+  //   var messageContent = message.content? '<p class="lower-main__content" data-id=' + message.id + '>' +
+  //                                             message.content + 
+  //                                           '</p>' : '';
     
-    var imageUrl      = image.url?         `'<img src="' + ${message.image.url} + '" class="lower-message__image" >' +` : ``;
+  //   var imageUrl      = message.image?         '<img src="' + message.image.url + '" class="lower-main__image" >' : '';
 
     
-    var html = '<div class="message" data-id=' + message.id + '>' +
-                  '<div class="upper-message">' +
-                    '<div class="upper-message__user-name">' +
-                      message.user_name +
-                    '</div>' +
-                    '<div class="upper-message__date">' +
-                      message.created_at +
-                    '</div>' +
-                  '</div>' +
-                  '<div class="lower-message">' +
-                    $(messageContent)
-                    $(imageUrl)
-                  '</div>' +
-                '</div>'
-    return html;
+  //   var html =    '<div class="upper-main">' +
+  //                   '<div class="upper-main__username">' +
+  //                     message.user_name +
+  //                   '</div>' +
+  //                   '<div class="upper-main__date">' +
+  //                     message.created_at +
+  //                   '</div>' +
+  //                 '</div>' +
+  //                 '<div class="lower-main">' +
+  //                   $(messageContent)
+  //                   $(imageUrl)
+  //                 '</div>' +
+  //               '</div>';
+  //   return html;
+  // };
+  var url = location.href;
+  if (url.includes('messages')){
+    setInterval(reloadMessages, 5000);
   };
 });
