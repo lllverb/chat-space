@@ -100,7 +100,9 @@ document.addEventListener("turbolinks:load", function() {
       .fail(function() {
         alert('自動更新に失敗しました');
       });
-    };
+    } else{
+      return
+    }
   };
   // console.log($('.group').data());
   // urlにmessagesが含まれるときだけ自動更新メソッドを実行
