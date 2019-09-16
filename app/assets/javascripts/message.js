@@ -69,10 +69,10 @@ document.addEventListener("turbolinks:load", function() {
   
   
   // 自動更新機能
+  var url = window.location.href;
+  var last_message_id = $('.lower-main__content:last').data('id');
   var reloadMessages = function() {
     
-    var url = window.location.href;
-    var last_message_id = $('.lower-main__content:last').data('id');
     if (url.includes('messages') && last_message_id != null){
       //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
 
