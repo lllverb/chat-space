@@ -93,7 +93,7 @@ document.addEventListener("turbolinks:load", function() {
 
   // urlにmessagesが含まれるときだけ自動更新メソッドを実行
   var url = location.href;
-  if (url.includes('messages')){
-    setInterval(reloadMessages, 5000);
+  if (url.includes('messages') && last_message_id != null){
+      setInterval(reloadMessages, 5000);
   };
 });
