@@ -101,10 +101,8 @@ document.addEventListener("turbolinks:load", function() {
         alert('自動更新に失敗しました');
       });
     } else {
-      console.log('a')
     }
   };
-  // console.log($('.group').data());
   // urlにmessagesが含まれるときだけ自動更新メソッドを実行
     setInterval(reloadMessages, 5000);
 });
