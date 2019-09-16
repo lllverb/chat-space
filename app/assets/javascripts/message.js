@@ -71,7 +71,7 @@ document.addEventListener("turbolinks:load", function() {
   // 自動更新機能
   var reloadMessages = function() {
     
-    var url = location.href;
+    var url = window.location.href;
     var last_message_id = $('.lower-main__content:last').data('id');
     if (url.includes('messages') && last_message_id != null){
       //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
@@ -101,8 +101,8 @@ document.addEventListener("turbolinks:load", function() {
         alert('自動更新に失敗しました');
       });
     } else{
-      return
-    }
+      return false;
+    };
   };
   // console.log($('.group').data());
   // urlにmessagesが含まれるときだけ自動更新メソッドを実行
