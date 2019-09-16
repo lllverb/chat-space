@@ -12,8 +12,8 @@
 
   - current_user.groups.each do |group|
     = link_to group_messages_path(group), class: 'link ' do
-      .group
-        .group--name
+      .group{"data-group_id": "#{group.id}"}
+        .group--name{"data-group_id": "#{group.id}"}
           = group.name
-        .group--talk
+        .group--talk{"data-group_id": "#{group.id}"}
           = group.show_last_message

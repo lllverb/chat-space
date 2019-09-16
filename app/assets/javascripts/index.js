@@ -36,8 +36,9 @@ $(document).on("turbolinks:load", function() {
   
   //グループメンバー用の配列を定義。idを入れていく。
   var ids = [];
-  
 
+  
+  
   //文字が検索フォームに入力された時
   inputForm.on('keyup', function(e){
     e.preventDefault();
@@ -52,7 +53,7 @@ $(document).on("turbolinks:load", function() {
         dataType: 'json'
       })
       
-
+      
       .done(function(data){
         searchResult.empty();
         if (data.length !== 0){
@@ -60,23 +61,19 @@ $(document).on("turbolinks:load", function() {
             buildHTML(data);
           });
         } else {
-        buildErrMsgToHTML("一致するユーザーはいません");
+          buildErrMsgToHTML("一致するユーザーはいません");
         }
       })
       .fail(function(){
         alert('検索に失敗しました')
       })
-
+      
       // 文字が入力されていない時
     } else{
       searchResult.empty();
     }
   });
-
-
-
-
-
+  
   // 追加ボタンが押されたときの処理
   searchResult.on("click", ".chat-group-user__btn--add", function(){
     var dataUserName = $(this).attr("data-user-name");
@@ -87,10 +84,10 @@ $(document).on("turbolinks:load", function() {
     $(this).parent().remove();
     buildMemberHTML(dataUserName, dataUserId)
   }),
-
-
-
-
+  
+  
+  
+  
   // 削除ボタンが押されたときの処理
   $(".js-add-user").on("click", ".js-remove-btn", function(){
     // 削除ボタンに対応するuserのidを取得
