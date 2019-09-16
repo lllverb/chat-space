@@ -69,42 +69,40 @@ document.addEventListener("turbolinks:load", function() {
   
   
   // 自動更新機能
-  var url = window.location.href;
-  var last_message_id = $('.lower-main__content:last').data('id');
   var reloadMessages = function() {
+    var last_message_id = $('.lower-main__content:last').data('id');
     
-    if (url.includes('messages') && last_message_id != null){
-      //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-
-      $.ajax({
-        //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
-        url: 'api/messages',
-        //ルーティングで設定した通りhttpメソッドをgetに指定
-        type: 'get',
-        dataType: 'json',
-        //dataオプションでリクエストに値を含める
-        data: {id: last_message_id}
+    //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+    
+    $.ajax({
+      //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
+      url: 'api/messages',
+      //ルーティングで設定した通りhttpメソッドをgetに指定
+      type: 'get',
+      dataType: 'json',
+      //dataオプションでリクエストに値を含める
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      //追加するHTMLの入れ物を作る
+      var insertHTML = '';
+      //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
+      messages.forEach(function(message){
+        //メッセージが入ったHTMLを取得
+        insertHTML = buildHTML(message);
+        //メッセージを追加
+        $('.main').append(insertHTML);
+        scrollBottom();
       })
-      .done(function(messages) {
-        //追加するHTMLの入れ物を作る
-        var insertHTML = '';
-        //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
-        messages.forEach(function(message){
-          //メッセージが入ったHTMLを取得
-          insertHTML = buildHTML(message);
-          //メッセージを追加
-          $('.main').append(insertHTML);
-          scrollBottom();
-        })
-      })
-      .fail(function() {
-        alert('自動更新に失敗しました');
-      });
-    } else{
-      return false;
-    };
+    })
+    .fail(function() {
+      alert('自動更新に失敗しました');
+    });
   };
   // console.log($('.group').data());
+  var url = window.location.href;
+  if (url.includes('messages') && last_message_id != null){
   // urlにmessagesが含まれるときだけ自動更新メソッドを実行
-  setInterval(reloadMessages, 5000);
+    setInterval(reloadMessages, 5000);
+  }
 });
