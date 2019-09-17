@@ -94,7 +94,9 @@ document.addEventListener("turbolinks:load", function() {
           insertHTML = buildHTML(message);
           //メッセージを追加
           $('.main').append(insertHTML);
-          scrollBottom();
+          if (insertHTML != null){
+            scrollBottom();
+          }
         })
       })
       .fail(function() {
@@ -104,5 +106,5 @@ document.addEventListener("turbolinks:load", function() {
     }
   };
   // urlにmessagesが含まれるときだけ自動更新メソッドを実行
-    setInterval(reloadMessages, 5000);
+  setInterval(reloadMessages, 5000);
 });
