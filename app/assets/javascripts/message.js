@@ -71,8 +71,8 @@ document.addEventListener("turbolinks:load", function() {
   // 自動更新機能
   var reloadMessages = function() {
     var url = window.location.href;
-    var last_message_id = $('.lower-main__content:last').data('id');
-    if (url.includes('messages') && last_message_id != null){
+    var last_message_id = $('.lower-main:last').data('id');
+    if (url.includes('messages') && last_message_id){
       
       //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
       
@@ -94,10 +94,8 @@ document.addEventListener("turbolinks:load", function() {
           insertHTML = buildHTML(message);
           //メッセージを追加
           $('.main').append(insertHTML);
-          if (insertHTML != null){
+          if (insertHTML) {
             scrollBottom();
-          } else{
-            
           }
         })
       })
@@ -108,5 +106,5 @@ document.addEventListener("turbolinks:load", function() {
     }
   };
   // urlにmessagesが含まれるときだけ自動更新メソッドを実行
-  setInterval(reloadMessages, 5000);
+    setInterval(reloadMessages, 5000);
 });

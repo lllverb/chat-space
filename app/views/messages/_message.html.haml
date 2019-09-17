@@ -3,9 +3,9 @@
     = message.user.name
   .upper-main__date
     = message.created_at.strftime("%Y/%m/%d %H:%M")
-.lower-main 
+.lower-main{"data-id": "#{message.id}"}
   - if message.content.present?
     %p.lower-main__content{"data-id": "#{message.id}"}
       = message.content
 
-  = image_tag message.image.url, class: 'lower-main__image' if message.image.present?
+  = image_tag message.image.url, class: 'lower-main__image', data: {id: "#{message.id}"}  if message.image.present?
