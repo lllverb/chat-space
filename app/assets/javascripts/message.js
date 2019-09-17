@@ -96,6 +96,8 @@ document.addEventListener("turbolinks:load", function() {
           $('.main').append(insertHTML);
           if (insertHTML != null){
             scrollBottom();
+          } else{
+            
           }
         })
       })
