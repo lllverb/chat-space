@@ -10,8 +10,8 @@ document.addEventListener("turbolinks:load", function() {
                         ${message.created_at}
                       </div>
                     </div>
-                    <div class="lower-main data-id= ${message.id}">
-                      <p class="lower-main__content" data-id= ${message.id} data-group_id="${message.group_id}" >
+                    <div class="lower-main" data-id= ${message.id} >
+                      <p class="lower-main__content" >
                         ${message.content} 
                       </p>
                       ${withImage}
@@ -19,13 +19,13 @@ document.addEventListener("turbolinks:load", function() {
     html = aMessage
     return html
   };
-  function buildLeftHTML (message){
-      var lastMessage = message.image.url != null? `画像が投稿されています` : `${message.content}`;
-      var lefthtml = `<div class="group--talk" data-id= ${message.id} data-group_id="${message.group_id}" >
-                        ${lastMessage}
-                      </div>`
-      return lefthtml
-    }
+  // function buildLeftHTML (message){
+  //     var lastMessage = message.image.url != null? `画像が投稿されています` : `${message.content}`;
+  //     var lefthtml = `<div class="group--talk" >
+  //                       ${lastMessage}
+  //                     </div>`
+  //     return lefthtml
+  //   }
   // 投稿したらボトムまでスクロール
   function scrollBottom(){
     $('.main').animate({scrollTop: $('.main')[0].scrollHeight});
@@ -52,9 +52,9 @@ document.addEventListener("turbolinks:load", function() {
       var html = buildHTML(data);
       $('.main').append(html);
 
-      var lefthtml = buildLeftHTML(data);
-      $(`.group--talk[data-group_id="${data.group_id}"]`).remove();
-      $(`.group[data-group_id="${data.group_id}"]`).append(lefthtml);
+      // var lefthtml = buildLeftHTML(data);
+      // $(`.group--talk[data-group_id="${data.group_id}"]`).remove();
+      // $(`.group[data-group_id="${data.group_id}"]`).append(lefthtml);
     
       
       $('#new_message')[0].reset();
