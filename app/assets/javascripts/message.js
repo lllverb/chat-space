@@ -10,7 +10,7 @@ document.addEventListener("turbolinks:load", function() {
                         ${message.created_at}
                       </div>
                     </div>
-                    <div class="lower-main">
+                    <div class="lower-main data-id= ${message.id}">
                       <p class="lower-main__content" data-id= ${message.id} data-group_id="${message.group_id}" >
                         ${message.content} 
                       </p>
